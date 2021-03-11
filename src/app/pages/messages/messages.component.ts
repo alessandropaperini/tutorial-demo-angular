@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MESSAGES } from 'src/app/mock/mock-messages';
+import { map } from 'rxjs/operators';
 import { Message } from 'src/app/model/message';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-messages',
@@ -9,13 +10,18 @@ import { Message } from 'src/app/model/message';
 })
 export class MessagesComponent implements OnInit {
 
-  messages: Message[];
+  messages: Message[] = [];
 
-  constructor() {
-    this.messages = MESSAGES;
-  }
+  constructor(
+    private readonly messageService: MessageService
+  ) { }
 
   ngOnInit(): void {
+    this.messageService.getAll()
+      .pipe(
+        map((messages: Message[]) => this.messages = messages)
+      )
+      .subscribe();
   }
 
 }
