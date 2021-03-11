@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { Message } from 'src/app/model/message';
 import { MessageService } from 'src/app/services/message.service';
 
@@ -22,6 +22,10 @@ export class MessageDetailComponent implements OnInit {
     this.route.params
       .pipe(
         switchMap(params => this.messageService.get(+params.id)),
+        catchError(err => {
+          this.router.navigate(['/']);
+          throw err;
+        }),
         map((message: Message | undefined) => this.message = message)
       )
       .subscribe();

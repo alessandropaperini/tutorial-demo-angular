@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { MESSAGES } from '../mock/mock-messages';
 import { Message } from '../model/message';
 
@@ -19,7 +19,8 @@ export class MessageService {
   }
 
   get(id: number): Observable<Message | undefined> {
-    return of(MESSAGES.find(m => m.id === id));
+    const message = MESSAGES.find(m => m.id === id);
+    return message ? of(message) : throwError(`Messaggio con id ${id} non trovato!`);
   }
   
 }
