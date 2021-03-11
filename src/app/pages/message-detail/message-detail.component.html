@@ -1,1 +1,5 @@
-<p>message-detail works!</p>
+<div *ngIf="message" class="message-details-wrapper">
+    <h4>{{ message.title }}</h4>
+    <small>messaggio: </small>
+    <p>{{ message.message }}</p>
+</div>
