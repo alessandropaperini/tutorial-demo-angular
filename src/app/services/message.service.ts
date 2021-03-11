@@ -18,7 +18,7 @@ export class MessageService {
     return of(this.messages);
   }
 
-  get(id: number): Observable<Message | undefined> {
+  get(id: number): Observable<Message> {
     const message = MESSAGES.find(m => m.id === id);
     return message ? of(message) : throwError(`Messaggio con id ${id} non trovato!`);
   }

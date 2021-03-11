@@ -26,7 +26,7 @@ export class MessageDetailComponent implements OnInit {
           this.router.navigate(['/']);
           throw err;
         }),
-        map((message: Message | undefined) => this.message = message)
+        map((message: Message) => this.message = message)
       )
       .subscribe();
   }
