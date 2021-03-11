@@ -1,9 +1,9 @@
 import { Message } from "../model/message";
 
 export const MESSAGES: Message[] = [
-    { id: new Date().getTime(), title: 'Titolo messaggio A', message: 'Messaggio A' },
-    { id: new Date().getTime() + 1, title: 'Titolo messaggio B', message: 'Messaggio B' },
-    { id: new Date().getTime() + 2, title: 'Titolo messaggio C', message: 'Messaggio C' },
-    { id: new Date().getTime() + 3, title: 'Titolo messaggio D', message: 'Messaggio D' },
-    { id: new Date().getTime() + 4, title: 'Titolo messaggio E', message: 'Messaggio E' }
+    { id: 1, title: 'Titolo messaggio 1', message: 'Questo è un messaggio di testo' },
+    { id: 2, title: 'Titolo messaggio 2', message: 'Questo è un messaggio di testo' },
+    { id: 3, title: 'Titolo messaggio 3', message: 'Questo è un messaggio di testo' },
+    { id: 4, title: 'Titolo messaggio 4', message: 'Questo è un messaggio di testo' },
+    { id: 5, title: 'Titolo messaggio 5', message: 'Questo è un messaggio di testo' }
 ];
