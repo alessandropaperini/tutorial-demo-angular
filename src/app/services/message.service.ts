@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
-import { MESSAGES } from '../mock/mock-messages';
+import { MOCK_MESSAGES } from '../mock/mock-messages';
 import { Message } from '../model/message';
 
 @Injectable({
@@ -11,7 +11,7 @@ export class MessageService {
   messages: Message[] = [];
 
   constructor() {
-    this.messages = MESSAGES;
+    this.messages = MOCK_MESSAGES;
   }
 
   getAll(): Observable<Message[]> {
@@ -19,7 +19,7 @@ export class MessageService {
   }
 
   get(id: number): Observable<Message> {
-    const message = MESSAGES.find(m => m.id === id);
+    const message = MOCK_MESSAGES.find(m => m.id === id);
     return message ? of(message) : throwError(`Messaggio con id ${id} non trovato!`);
   }
   
