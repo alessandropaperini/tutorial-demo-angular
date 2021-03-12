@@ -23,7 +23,7 @@ export class MessageService {
   }
 
   get(id: number): Observable<Message> {
-    const message = MOCK_MESSAGES.find(m => m.id === id);
+    const message = this.messages.find(m => m.id === id);
     return message ? of(message) : throwError(`Messaggio con id ${id} non trovato!`);
   }
 
@@ -34,7 +34,7 @@ export class MessageService {
   }
 
   remove(id: number): Observable<void> {
-    const messageIndex = MOCK_MESSAGES.findIndex(m => m.id === id);
+    const messageIndex = this.messages.findIndex(m => m.id === id);
     if (messageIndex !== -1) {
       this.messages.splice(messageIndex, 1)
       return of(undefined)
