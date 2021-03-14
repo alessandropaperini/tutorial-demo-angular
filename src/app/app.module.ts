@@ -8,19 +8,23 @@ import { MaterialModule } from './shared/material.module';
 import { NavigationComponent } from './navigation/navigation.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 import { MessageDetailComponent } from './pages/message-detail/message-detail.component';
+import { FormsModule } from '@angular/forms';
+import { CreateMessageDialogComponent } from './components/create-message-dialog/create-message-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     MessagesComponent,
-    MessageDetailComponent
+    MessageDetailComponent,
+    CreateMessageDialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
