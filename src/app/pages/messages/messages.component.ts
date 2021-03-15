@@ -5,6 +5,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { CreateMessageDialogComponent } from 'src/app/components/create-message-dialog/create-message-dialog.component';
 import { Message } from 'src/app/model/message';
 import { MessageService } from 'src/app/services/message.service';
+import { TitleService } from 'src/app/services/title.service';
 
 @Component({
   selector: 'app-messages',
@@ -17,7 +18,8 @@ export class MessagesComponent implements OnInit {
 
   constructor(
     private readonly messageService: MessageService,
-    private readonly dialog: MatDialog
+    private readonly dialog: MatDialog,
+    private readonly titleService: TitleService
   ) { }
 
   ngOnInit(): void {
@@ -26,6 +28,7 @@ export class MessagesComponent implements OnInit {
         map((messages: Message[]) => this.messages = messages)
       )
       .subscribe();
+    this.titleService.title.next('Messaggi');
   }
 
   create(): void {

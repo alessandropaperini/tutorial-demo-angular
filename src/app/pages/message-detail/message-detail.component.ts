@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { Message } from 'src/app/model/message';
 import { MessageService } from 'src/app/services/message.service';
+import { TitleService } from 'src/app/services/title.service';
 
 @Component({
   selector: 'app-message-detail',
@@ -16,7 +17,8 @@ export class MessageDetailComponent implements OnInit {
   constructor(
     private readonly route: ActivatedRoute,
     private readonly messageService: MessageService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly titleService: TitleService
   ) { }
 
   ngOnInit(): void {
@@ -27,7 +29,10 @@ export class MessageDetailComponent implements OnInit {
           this.router.navigate(['/']);
           throw err;
         }),
-        map((message: Message) => this.message = message)
+        map((message: Message) => {
+          this.message = message;
+          this.titleService.title.next(`Messaggio ${message.id}`);
+        })
       )
       .subscribe();
   }
