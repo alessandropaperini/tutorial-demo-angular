@@ -1,0 +1,9 @@
+<div *ngIf="message">
+    <button mat-mini-fab color="warn" (click)="delete(message)">
+        <mat-icon>delete</mat-icon>
+    </button>
+
+    <h2>{{ message.title }}</h2>
+    <small>messaggio: </small>
+    <p>{{ message.message }}</p>
+</div>

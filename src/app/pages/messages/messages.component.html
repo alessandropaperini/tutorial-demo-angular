@@ -1,0 +1,10 @@
+<button mat-mini-fab color="primary" (click)="create()">
+    <mat-icon>add</mat-icon>
+</button>
+
+<mat-nav-list>
+    <a mat-list-item [routerLink]="['message', message.id]" *ngFor="let message of messages">
+        <p matLine>{{ message.title }}</p>
+        <p matLine class="extract">{{ message.message }}</p>
+    </a>
+</mat-nav-list>
