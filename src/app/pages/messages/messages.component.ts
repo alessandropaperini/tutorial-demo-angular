@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { CreateMessageDialogComponent } from 'src/app/components/create-message-dialog/create-message-dialog.component';
@@ -19,7 +20,8 @@ export class MessagesComponent implements OnInit {
   constructor(
     private readonly messageService: MessageService,
     private readonly dialog: MatDialog,
-    private readonly titleService: TitleService
+    private readonly titleService: TitleService,
+    private readonly snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -38,7 +40,11 @@ export class MessagesComponent implements OnInit {
         switchMap((message: Message | undefined) => message ? this.messageService.add(message) : new Observable(sub => sub.complete()))
       )
       .subscribe(
-        (message: any) => console.log(`Messaggio creato: ${message.id}`)
+        (message: any) => {
+          console.log(`Messaggio creato: ${message.id}`);
+          this.snackBar.open('Aggiunto con successo');
+        },
+        err => this.snackBar.open(`Errore: ${err}`)
       );
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { Message } from 'src/app/model/message';
@@ -18,7 +19,8 @@ export class MessageDetailComponent implements OnInit {
     private readonly route: ActivatedRoute,
     private readonly messageService: MessageService,
     private readonly router: Router,
-    private readonly titleService: TitleService
+    private readonly titleService: TitleService,
+    private readonly snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -27,12 +29,15 @@ export class MessageDetailComponent implements OnInit {
         switchMap(params => this.messageService.get(+params.id)),
         catchError(err => {
           this.router.navigate(['/']);
+          this.snackBar.open(`Errore: ${err}`);
           throw err;
         }),
-        map((message: Message) => {
-          this.message = message;
-          this.titleService.title.next(`Messaggio ${message.id}`);
-        })
+        map(
+          (message: Message) => {
+            this.message = message;
+            this.titleService.title.next(`Messaggio ${message.id}`);
+          }
+        )
       )
       .subscribe();
   }
@@ -42,9 +47,13 @@ export class MessageDetailComponent implements OnInit {
       .subscribe(
         () => {
           console.log(`${message.title} rimosso!`);
+          this.snackBar.open(`Messaggio ${message.id} rimosso con successo`)
           this.router.navigate(['/']);
         },
-        err => console.error(err)
+        err => {
+          console.error(err);
+          this.snackBar.open(`Errore: ${err}`);
+        }
       );
   }
 
