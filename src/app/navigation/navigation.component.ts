@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { AuthenticationService } from '../services/authentication.service';
 import { TitleService } from '../services/title.service';
 
 @Component({
@@ -10,10 +11,12 @@ import { TitleService } from '../services/title.service';
 export class NavigationComponent implements OnInit {
 
   title: string = '';
+  user: string | undefined;
 
   constructor(
     private readonly titleService: TitleService,
-    private readonly ref: ChangeDetectorRef
+    private readonly ref: ChangeDetectorRef,
+    private readonly authenticationService: AuthenticationService
   ) { }
 
   ngOnInit(): void {
@@ -25,6 +28,7 @@ export class NavigationComponent implements OnInit {
         })
       )
       .subscribe();
+    this.user = this.authenticationService.getAuthentication()?.username;
   }
 
 }
