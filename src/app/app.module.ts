@@ -10,6 +10,7 @@ import { MessagesComponent } from './pages/messages/messages.component';
 import { MessageDetailComponent } from './pages/message-detail/message-detail.component';
 import { FormsModule } from '@angular/forms';
 import { CreateMessageDialogComponent } from './components/create-message-dialog/create-message-dialog.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CreateMessageDialogComponent } from './components/create-message-dialog
     NavigationComponent,
     MessagesComponent,
     MessageDetailComponent,
-    CreateMessageDialogComponent
+    CreateMessageDialogComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
