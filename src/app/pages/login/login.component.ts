@@ -10,7 +10,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class LoginComponent implements OnInit {
 
-  username: string | undefined;
+  username?: string;
 
   constructor(
     private readonly authenticationService: AuthenticationService,

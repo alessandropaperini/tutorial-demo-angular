@@ -9,7 +9,7 @@ export const ACCESS_TOKEN = 'demo-access-store';
 })
 export class AuthenticationService {
 
-  private authentication: Authentication | undefined;
+  private authentication?: Authentication;
 
   constructor() {
     const stored = localStorage.getItem(ACCESS_TOKEN);

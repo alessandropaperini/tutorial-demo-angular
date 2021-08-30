@@ -13,7 +13,7 @@ import { TitleService } from 'src/app/services/title.service';
 })
 export class MessageDetailComponent implements OnInit {
 
-  message: Message | undefined;
+  message?: Message;
 
   constructor(
     private readonly route: ActivatedRoute,
