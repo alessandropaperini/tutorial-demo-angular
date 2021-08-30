@@ -37,7 +37,7 @@ export class MessagesComponent implements OnInit {
     this.dialog.open(CreateMessageDialogComponent)
       .afterClosed()
       .pipe(
-        switchMap((message: Message | undefined) => message ? this.messageService.add(message) : new Observable(sub => sub.complete()))
+        switchMap((message?: Message) => message ? this.messageService.add(message) : new Observable(sub => sub.complete()))
       )
       .subscribe(
         (message: any) => {

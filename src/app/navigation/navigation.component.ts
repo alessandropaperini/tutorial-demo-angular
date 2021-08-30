@@ -11,7 +11,7 @@ import { TitleService } from '../services/title.service';
 export class NavigationComponent implements OnInit {
 
   title: string = '';
-  user: string | undefined;
+  user?: string;
 
   constructor(
     private readonly titleService: TitleService,
